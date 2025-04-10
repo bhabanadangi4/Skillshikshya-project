@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registration</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="name">Enter your name</label>
+                <input type="text" id="name" name="name" required>
+                <div id="nameError" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Enter your email</label>
+                <input type="email" id="email" name="email" required>
+                <div id="emailError" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Create password</label>
+                <input type="password" id="password" name="password" required>
+                <div id="passwordError" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <div id="confirmPasswordError" class="error-message"></div>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I accept all terms &amp; conditions</label>
+                <div id="termsError" class="error-message"></div>
+            </div>
+            <button type="submit">Register Now</button>
+            <div class="login-link">
+                Already have an account? <a href="#">Login now</a>
+            </div>
+            <div id="successMessage" class="success-message" style="display:none;"></div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const termsCheckbox = document.getElementById('terms');
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+            const termsError = document.getElementById('termsError');
+            const successMessageDiv = document.getElementById('successMessage');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                if (validateForm()) {
+                    
+                    setTimeout(() => {
+                        displaySuccess('Registration successful!');
+                        form.reset();
+                    }, 1000); 
+                }
+            });
+
+            function validateForm() {
+                let isValid = true;
+
+                if (nameInput.value.trim() === '') {
+                    displayError(nameError, 'Please enter your name.');
+                    isValid = false;
+                } else {
+                    clearError(nameError);
+                }
+
+                if (emailInput.value.trim() === '') {
+                    displayError(emailError, 'Please enter your email.');
+                    isValid = false;
+                } else if (!isValidEmail(emailInput.value.trim())) {
+                    displayError(emailError, 'Please enter a valid email address.');
+                    isValid = false;
+                } else {
+                    clearError(emailError);
+                }
+
+                if (passwordInput.value === '') {
+                    displayError(passwordError, 'Please create a password.');
+                    isValid = false;
+                } else if (passwordInput.value.length < 6) {
+                    displayError(passwordError, 'Password must be at least 6 characters long.');
+                    isValid = false;
+                } else {
+                    clearError(passwordError);
+                }
+
+                if (confirmPasswordInput.value === '') {
+                    displayError(confirmPasswordError, 'Please confirm your password.');
+                    isValid = false;
+                } else if (confirmPasswordInput.value !== passwordInput.value) {
+                    displayError(confirmPasswordError, 'Passwords do not match.');
+                    isValid = false;
+                } else {
+                    clearError(confirmPasswordError);
+                }
+
+                if (!termsCheckbox.checked) {
+                    displayError(termsError, 'Please accept the terms & conditions.');
+                    isValid = false;
+                } else {
+                    clearError(termsError);
+                }
+
+                return isValid;
+            }
+
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            function displayError(element, message) {
+                element.textContent = message;
+            }
+
+            function clearError(element) {
+                element.textContent = '';
+            }
+
+            function displaySuccess(message) {
+                successMessageDiv.textContent = message;
+                successMessageDiv.style.display = 'block';
+              
+                setTimeout(() => {
+                    successMessageDiv.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Default light mode background */
+    color: #333; /* Default light mode text color */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+    background-color: #1a1a1a; /* Dark mode background */
+    color: #eee; /* Dark mode text color */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #fff; /* Light mode header background */
+    color: #333; /* Light mode header text color */
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+header.dark {
+    background-color: #222; /* Dark mode header background */
+    color: #eee; /* Dark mode header text color */
+    border-bottom-color: #444;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav li {
+    margin-left: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #555; /* Light mode link color */
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #007bff;
+}
+
+header.dark nav a {
+    color: #ccc; /* Dark mode link color */
+}
+
+header.dark nav a:hover {
+    color: #add8e6;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.hero {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.hero .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.hero .button:hover {
+    background-color: #0056b3;
+}
+
+body.dark .hero .button {
+    background-color: #add8e6;
+    color: #333;
+}
+
+body.dark .hero .button:hover {
+    background-color: #87ceeb;
+}
+
+.features {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.feature-item {
+    padding: 20px;
+    border: 1px solid #ddd; /* Light mode feature border */
+    border-radius: 5px;
+    background-color: #fff; /* Light mode feature background */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark .feature-item {
+    border-color: #444; /* Dark mode feature border */
+    background-color: #333; /* Dark mode feature background */
+}
+
+.feature-item h3 {
+    margin-top: 0;
+    color: #333; /* Light mode feature heading */
+    transition: color 0.3s ease;
+}
+
+body.dark .feature-item h3 {
+    color: #eee; /* Dark mode feature heading */
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #333; /* Light mode footer background */
+    color: #fff; /* Light mode footer text color */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark footer {
+    background-color: #1a1a1a; /* Dark mode footer background */
+    color: #ccc; /* Dark mode footer text color */
+}
+
+/* Hide sun icon in light mode, moon in dark mode initially */
+#sun-icon {
+    display: none;
+}
+
+body.dark #moon-icon {
+    display: none;
+}
+
+body.dark #sun-icon {
+    display: block;
+}
